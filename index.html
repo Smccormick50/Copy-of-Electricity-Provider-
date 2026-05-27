@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#00694a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Electrical Providers" />
+  <title>McCoy's Electrical Provider Search</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="icon" href="icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="brand-card">
+        <img src="logo.jpg" alt="McCoy's Building Supply" class="brand-logo" />
+      </div>
+      <div class="title-block">
+        <p class="eyebrow">Store utility lookup</p>
+        <h1>Electrical Provider Search</h1>
+        <p class="subhead">Type a store number to find provider, delivery company, ESID/account, and outage phone information.</p>
+      </div>
+    </header>
+
+    <section class="search-card" aria-label="Store search">
+      <label for="storeSearch">Store number</label>
+      <div class="search-row">
+        <input id="storeSearch" type="search" inputmode="numeric" autocomplete="off" placeholder="Example: 123" autofocus />
+        <button id="clearBtn" type="button" aria-label="Clear search">Clear</button>
+      </div>
+      <div class="status-row">
+        <span id="dataStatus">Loading provider list...</span>
+        <button id="refreshBtn" type="button">Refresh</button>
+      </div>
+    </section>
+
+    <section id="setupNotice" class="notice hidden">
+      <strong>Setup needed:</strong> paste your deployed Google Apps Script web app URL into <code>app.js</code>, then upload these files to GitHub Pages.
+    </section>
+
+    <section id="results" class="results" aria-live="polite"></section>
+  </main>
+
+  <footer class="bottom-actions">
+    <a id="sheetLink" href="https://docs.google.com/spreadsheets/d/1pVbdn5lAn42CXMBxAtBdOre2DqlgkLEqQ2aQ8g83b7E/edit?usp=sharing" target="_blank" rel="noopener">Edit Google Sheet</a>
+  </footer>
+
+  <template id="cardTemplate">
+    <article class="result-card">
+      <div class="result-header">
+        <div>
+          <p class="result-label">Store</p>
+          <h2 class="store-number"></h2>
+        </div>
+        <span class="match-badge"></span>
+      </div>
+      <dl class="info-grid"></dl>
+      <div class="card-actions"></div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
